@@ -1,7 +1,16 @@
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import Home from "./components/Home";
 
 const App = () => {
-  return <div>Optimise your healthspan</div>;
+  return (
+    <StrictMode>
+      <BrowserRouter>
+        <Home />
+      </BrowserRouter>
+    </StrictMode>
+  );
 };
 
 const container = document.getElementById("root");
