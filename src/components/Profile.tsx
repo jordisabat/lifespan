@@ -7,6 +7,7 @@ import {
   dietOptions,
   habitOptions,
   stressLevelOptions,
+  exerciseFrequencyOptions,
 } from "../utils/data";
 import { isValidUser } from "../utils/validators";
 
@@ -173,17 +174,21 @@ const Profile = (props: ProfileProps) => {
             </label>
           </div>
           <div className="md:w-2/3">
-            <input
-              className="w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 py-2 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none"
-              type="text"
+            <select
               id="exerciseFrequency"
               name="exerciseFrequency"
-              placeholder="Exercise Frequency"
+              className="w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 py-2 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none"
               value={updatedUser.exerciseFrequency}
               onChange={(e) =>
                 handleOnChange("exerciseFrequency", e.target.value)
               }
-            />
+            >
+              {exerciseFrequencyOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
         <div className="mb-6 md:flex md:w-[600px] md:items-center">

@@ -1,5 +1,6 @@
 import {
   DietType,
+  ExerciseFrequencyType,
   GenderType,
   HabitType,
   StressLevelType,
@@ -19,7 +20,7 @@ export const initialUser: UserType = {
   sleepHours: 0,
   stressLevel: "Low",
   updatedAt: "",
-  lifestyleScore: 0,
+  reports: [],
 };
 
 export const genderOptions: GenderType[] = ["Male", "Female", "Other"];
@@ -39,3 +40,14 @@ export const habitOptions: HabitType[] = [
   "Daily",
 ];
 export const stressLevelOptions: StressLevelType[] = ["Low", "Medium", "High"];
+
+export const exerciseFrequencyOptions: ExerciseFrequencyType[] = [
+  "Never",
+  "1 time per week",
+  "2 times per week",
+  "3 times per week",
+  "4 times per week",
+  "5 times per week",
+  "6 times per week",
+  "every day",
+];
