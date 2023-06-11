@@ -318,7 +318,7 @@ const Profile = (props: ProfileProps) => {
 
         <div className="flex flex-row justify-between">
           <button
-            className="focus:shadow-outline rounded bg-purple-500 px-4 py-2 font-bold text-white shadow hover:bg-purple-400 focus:outline-none"
+            className="inline-flex flex-row flex-nowrap items-center rounded-full border-2 border-black bg-black px-[24px] py-[8px] text-[16px] text-white hover:border-black hover:bg-white hover:text-black"
             type="submit"
           >
             Save
