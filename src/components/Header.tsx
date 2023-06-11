@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
   const location = useLocation();
   const [currentPage, setCurrentPage] = useState("");
 
   useEffect(() => {
-    console.log("URL pathname:", location.pathname);
-
     setCurrentPage(location.pathname);
   }, [location]);
 

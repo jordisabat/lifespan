@@ -11,16 +11,15 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleOnSave = (user: UserType) => {
-    if (user.id > 0) {
-      setIsLoading(true);
-      // const value = await calculateLifestyleScore(user);
-      user.lifestyleScore = 26.7;
-      setUser(user);
-      localStorage.setItem("user", JSON.stringify(user));
-      console.log("User saved!");
+    console.log("Saving user...", user);
+    setIsLoading(true);
+    // const value = await calculateLifestyleScore(user);
+    user.lifestyleScore = 26.7;
+    setUser(user);
+    localStorage.setItem("user", JSON.stringify(user));
+    console.log("User saved!");
 
-      setIsLoading(false);
-    }
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -36,13 +35,15 @@ const Home = () => {
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <Routes>
-          <Route path="/" element={<DashBoard user={user} />} />
-          <Route
-            path="/profile"
-            element={<Profile user={user} onSave={handleOnSave} />}
-          />
-        </Routes>
+        <div className="p-16">
+          <Routes>
+            <Route path="/" element={<DashBoard user={user} />} />
+            <Route
+              path="/profile"
+              element={<Profile user={user} onSave={handleOnSave} />}
+            />
+          </Routes>
+        </div>
       )}
     </div>
   );

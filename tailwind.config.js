@@ -2,13 +2,12 @@ module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx,html}"],
   theme: {
     theme: {
-      extend:
-      {
+      extend: {
         fontFamily: {
-          'poppins': ['Silka', 'sans-serif']
+          silka: ["silka", "sans-serif"],
         },
       },
-    }
+    },
   },
   plugins: [],
 };
