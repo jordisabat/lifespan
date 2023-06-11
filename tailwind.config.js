@@ -1,7 +1,14 @@
-export default {
+module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx,html}"],
   theme: {
-    extend: {},
+    theme: {
+      extend:
+      {
+        fontFamily: {
+          'poppins': ['Silka', 'sans-serif']
+        },
+      },
+    }
   },
   plugins: [],
 };

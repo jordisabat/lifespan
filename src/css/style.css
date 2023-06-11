@@ -1,0 +1,19 @@
+@import url("https://fonts.cdnfonts.com/css/silka");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.cool-link::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  border-color: #000;
+  background: #000;
+  transition: width 0.3s;
+}
+
+.cool-link:hover::after {
+  width: 100%;
+}

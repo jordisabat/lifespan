@@ -1,10 +1,12 @@
-import { UserType } from "../data/userType";
+import { UserType } from "../data/types";
 
-const DashBoard = (props: { user: UserType | null }) => {
+const DashBoard = (props: { user: UserType }) => {
+  const { user } = props;
   return (
     <div>
       <h1>Dashboard</h1>
-      {props.user !== null ? <div>{props.user.name}</div> : <div>N/A</div>}
+      <div>{user.name}</div>
+      <h2>{user.lifestyleScore}</h2>
     </div>
   );
 };

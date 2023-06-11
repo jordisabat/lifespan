@@ -1,14 +1,43 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useParams, useLocation } from "react-router-dom";
 
 const Header = () => {
+  const location = useLocation();
+  const [currentPage, setCurrentPage] = useState("");
+
+  useEffect(() => {
+    console.log("URL pathname:", location.pathname);
+
+    setCurrentPage(location.pathname);
+  }, [location]);
+
   return (
     <header>
-      <div>
+      <div className="flex justify-between p-6">
         <div>
-          <Link to="/">DashBoard</Link>
+          <img src="assets/logo.svg" alt="logo NU" className="h-[30px]" />
         </div>
-        <div>
-          <Link to="/profile">Profile</Link>
+        <div className="flex justify-end gap-2">
+          <div>
+            <Link
+              to="/"
+              className={`cool-link ${
+                currentPage === "/" ? "font-medium" : ""
+              }`}
+            >
+              DashBoard
+            </Link>
+          </div>
+          <div>
+            <Link
+              to="/profile"
+              className={`cool-link ${
+                currentPage === "/profile" ? "font-medium" : ""
+              }`}
+            >
+              Profile
+            </Link>
+          </div>
         </div>
       </div>
     </header>

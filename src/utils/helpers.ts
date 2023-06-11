@@ -1,37 +1,32 @@
-import { UserType } from "../data/userType";
+import { UserType } from "../data/types";
 
-export const isValidUser = (user: UserType): boolean => {
-  if (!user || typeof user !== "object") {
-    return false;
-  }
+export const formatDateString = (dateString: string): string => {
+  const date = new Date(dateString);
 
-  const {
-    name,
-    email,
-    age,
-    gender,
-    exerciseFrequency,
-    diet,
-    smokingHabits,
-    alcoholConsumption,
-    sleepHours,
-    stressLevel,
-  } = user;
+  const formattedDate = date.toLocaleDateString();
+  const formattedTime = date.toLocaleTimeString();
 
-  if (
-    !name ||
-    !email ||
-    !age ||
-    !gender ||
-    !exerciseFrequency ||
-    !diet ||
-    !smokingHabits ||
-    !alcoholConsumption ||
-    !sleepHours ||
-    !stressLevel
-  ) {
-    return false;
-  }
+  return `${formattedDate} ${formattedTime}`;
+};
 
-  return true;
+function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function myAsyncFunction() {
+  console.log("Calculating lifestyle score...");
+  await delay(2000); // Delay of 2 seconds
+  console.log("Almost finished calculating lifestyle score...");
+  await delay(2000); // Delay of 2 seconds
+  console.log("Finished calculating lifestyle score!");
+}
+
+export const calculateLifestyleScore = async (
+  user: UserType
+): Promise<number> => {
+  const min = +user.age - 5;
+  const max = +user.age + 5;
+  const randomValue = Math.random() * (max - min) + min;
+  await myAsyncFunction();
+  return parseFloat(randomValue.toFixed(1)); // Round to 2 decimal places
 };
