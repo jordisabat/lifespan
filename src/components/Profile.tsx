@@ -309,12 +309,14 @@ const Profile = (props: ProfileProps) => {
             </select>
           </div>
         </div>
-        <div className="mb-6 md:flex md:w-[600px]">
-          <div className="md:w-1/3"></div>
-          <div className="md:w-2/3">
-            <div className="text-red-500">{error}</div>
+        {error && (
+          <div className="mb-6 md:flex md:w-[600px]">
+            <div className="md:w-1/3"></div>
+            <div className="md:w-2/3">
+              <div className="text-red-500">{error}</div>
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="flex flex-row justify-between">
           <button
