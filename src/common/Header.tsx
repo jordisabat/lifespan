@@ -13,7 +13,9 @@ const Header = () => {
     <header>
       <div className="flex justify-between p-6">
         <div>
-          <img src="assets/logo.svg" alt="logo NU" className="h-[30px]" />
+          <Link to="/">
+            <img src="assets/logo.svg" alt="logo NU" className="h-[30px]" />
+          </Link>
         </div>
         <div className="flex justify-end gap-6">
           <div>

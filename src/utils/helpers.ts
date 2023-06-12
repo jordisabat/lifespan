@@ -14,11 +14,7 @@ function delay(ms: number): Promise<void> {
 }
 
 async function myAsyncFunction() {
-  console.log("Calculating lifestyle score...");
-  await delay(2000); // Delay of 2 seconds
-  console.log("Almost finished calculating lifestyle score...");
-  await delay(2000); // Delay of 2 seconds
-  console.log("Finished calculating lifestyle score!");
+  await delay(6000); // Delay of 5 seconds
 }
 
 const calculateScore = (user: UserType): number => {

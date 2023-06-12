@@ -5,7 +5,7 @@ import { ReportType, UserType } from "../data/types";
 import { initialUser } from "../utils/data";
 import { calculateUserReport } from "../utils/helpers";
 import DashBoard from "./Dashboard";
-import Header from "./Header";
+import Header from "../common/Header";
 import Profile from "./Profile";
 
 const Home = () => {
@@ -19,14 +19,15 @@ const Home = () => {
     } else {
       const report: ReportType = await calculateUserReport(user);
       user.reports.push(report);
-      setUser(user);
       localStorage.setItem("user", JSON.stringify(user));
-      console.log("User saved!");
+
+      setUser(user);
     }
     setIsLoading(false);
   };
 
   useEffect(() => {
+    // store user on cache
     const data = localStorage.getItem("user");
     if (data) {
       setUser(JSON.parse(data) as UserType);
@@ -36,19 +37,18 @@ const Home = () => {
   return (
     <div className="p-[24px] font-silka text-[18px]">
       <Header />
-      {isLoading ? (
-        <div className="p-16">Loading...</div>
-      ) : (
-        <div className="flex justify-center">
-          <Routes>
-            <Route path="/" element={<DashBoard user={user} />} />
-            <Route
-              path="/profile"
-              element={<Profile user={user} onSave={handleOnSave} />}
-            />
-          </Routes>
-        </div>
-      )}
+      <div className="flex justify-center">
+        <Routes>
+          <Route
+            path="/"
+            element={<DashBoard user={user} isLoading={isLoading} />}
+          />
+          <Route
+            path="/profile"
+            element={<Profile user={user} onSave={handleOnSave} />}
+          />
+        </Routes>
+      </div>
     </div>
   );
 };
