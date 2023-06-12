@@ -3,19 +3,18 @@ import { ReportType, UserType } from "../data/types";
 export const formatDateString = (dateString: string): string => {
   const date = new Date(dateString);
 
-  const formattedDate = date.toLocaleDateString();
-  const formattedTime = date.toLocaleTimeString();
+  const formattedDate = date.toLocaleDateString("en-US", { timeZone: "CET" });
+  const formattedTime = date.toLocaleTimeString("en-US", { timeZone: "CET" });
+  if (formattedDate === "Invalid Date" || formattedTime === "Invalid Date") {
+    return "Invalid Date";
+  }
 
   return `${formattedDate} ${formattedTime}`;
 };
 
-function delay(ms: number): Promise<void> {
+const delay = (ms: number): Promise<void> => {
   return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-async function myAsyncFunction() {
-  await delay(6000); // Delay of 5 seconds
-}
+};
 
 const calculateScore = (user: UserType): number => {
   const min = +user.age - 5;
@@ -36,7 +35,7 @@ export const calculateUserReport = async (
     microbiomeAge: calculateScore(user),
     createdAt: new Date().toISOString(),
   };
-  await myAsyncFunction();
+  await delay(6000);
   return report;
 };
 
