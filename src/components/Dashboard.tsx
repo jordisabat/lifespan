@@ -1,11 +1,11 @@
 import { UserType } from "../data/types";
 import "chart.js/auto";
-import LineChart from "./widgets/LineChart";
-import BarChart from "./widgets/BarChart";
 import Greatings from "../common/Greetings";
 import ChronoWidget from "./widgets/ChronoWidget";
 import Welcome from "./Welcome";
 import LoadingReport from "../common/LoadingReport";
+import HabitsWidget from "./widgets/HabitsWidget";
+import GraphsWidget from "./widgets/GraphsWidget";
 
 const DashBoard = (props: { user: UserType; isLoading: boolean }) => {
   const { user, isLoading } = props;
@@ -21,14 +21,8 @@ const DashBoard = (props: { user: UserType; isLoading: boolean }) => {
         <div>
           <Greatings user={user} />
           <ChronoWidget report={lastReport} />
-          <div className="flex flex-col gap-12 pb-32 md:flex-row">
-            <div className="md:w-1/2">
-              <LineChart />
-            </div>
-            <div className="md:w-1/2">
-              <BarChart />
-            </div>
-          </div>
+          <HabitsWidget user={user} />
+          <GraphsWidget />
         </div>
       )}
     </div>

@@ -15,14 +15,13 @@ const Home = () => {
   const handleOnSave = async (user: UserType) => {
     setIsLoading(true);
     if (user.id === 0) {
-      setUser(user);
+      localStorage.removeItem("user");
     } else {
       const report: ReportType = await calculateUserReport(user);
       user.reports.push(report);
       localStorage.setItem("user", JSON.stringify(user));
-
-      setUser(user);
     }
+    setUser(user);
     setIsLoading(false);
   };
 

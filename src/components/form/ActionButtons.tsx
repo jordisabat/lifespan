@@ -11,7 +11,7 @@ const ActionButtons = ({ cleanUser }: ActionButtonsProps) => {
             className="inline-flex flex-row flex-nowrap items-center rounded-full border-2 border-black bg-white px-[24px] py-[8px] text-[16px] text-black hover:border-white hover:bg-black hover:text-white"
             onClick={cleanUser}
           >
-            Remove
+            Delete Account
           </button>
         </div>
       </div>

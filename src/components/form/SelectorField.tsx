@@ -5,7 +5,7 @@ interface SelectorFieldProps {
   name: string;
   value: string;
   options: string[];
-  onChange: (fieldName: string, value: string) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const SelectorField: React.FC<SelectorFieldProps> = ({
@@ -31,7 +31,7 @@ const SelectorField: React.FC<SelectorFieldProps> = ({
           id={name}
           name={name}
           value={value}
-          onChange={(e) => onChange(name, e.target.value)}
+          onChange={onChange}
         >
           {options.map((option) => (
             <option key={option} value={option}>

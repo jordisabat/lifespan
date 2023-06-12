@@ -39,3 +39,78 @@ export const calculateUserReport = async (
   await myAsyncFunction();
   return report;
 };
+
+export const getHabitValue = (habit: string): number => {
+  switch (habit) {
+    case "Never":
+      return 5;
+    case "Rarely":
+      return 4;
+    case "Sometimes":
+      return 3;
+    case "Often":
+      return 2;
+    case "Daily":
+      return 1;
+    default:
+      return 0;
+  }
+};
+
+export const getDietValue = (diet: string): number => {
+  switch (diet) {
+    case "Vegan":
+      return 4;
+
+    case "Vegetarian":
+      return 3;
+
+    case "Omnivore":
+      return 2;
+
+    case "Carnivore":
+      return 1;
+
+    case "Other":
+      return 0;
+
+    default:
+      return 0;
+  }
+};
+
+export const getStressLevelValue = (stressLevel: string): number => {
+  switch (stressLevel) {
+    case "Low":
+      return 0;
+    case "Medium":
+      return 1;
+    case "High":
+      return 2;
+    default:
+      return 0;
+  }
+};
+
+export const getExerciseFrequencyValue = (frequency: string): number => {
+  switch (frequency) {
+    case "Never":
+      return 0;
+    case "1 time per week":
+      return 1;
+    case "2 times per week":
+      return 2;
+    case "3 times per week":
+      return 3;
+    case "4 times per week":
+      return 4;
+    case "5 times per week":
+      return 5;
+    case "6 times per week":
+      return 6;
+    case "every day":
+      return 7;
+    default:
+      return 0;
+  }
+};

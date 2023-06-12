@@ -98,35 +98,35 @@ const Profile = (props: ProfileProps) => {
           name="gender"
           value={updatedUser.gender}
           options={genderOptions}
-          onChange={(e) => handleOnChange("gender", e)}
+          onChange={(e) => handleOnChange("gender", e.target.value)}
         />
         <SelectorField
           label="Exercise Frequency"
           name="exerciseFrequency"
           options={exerciseFrequencyOptions}
           value={updatedUser.exerciseFrequency}
-          onChange={(e) => handleOnChange("exerciseFrequency", e)}
+          onChange={(e) => handleOnChange("exerciseFrequency", e.target.value)}
         />
         <SelectorField
           label="Diet"
           name="diet"
           options={dietOptions}
           value={updatedUser.diet}
-          onChange={(e) => handleOnChange("diet", e)}
+          onChange={(e) => handleOnChange("diet", e.target.value)}
         />
         <SelectorField
           label="Smoking Habits"
           name="smokingHabits"
           options={habitOptions}
           value={updatedUser.smokingHabits}
-          onChange={(value) => handleOnChange("smokingHabits", value)}
+          onChange={(e) => handleOnChange("smokingHabits", e.target.value)}
         />
         <SelectorField
           label="Alcohol Consumption"
           name="alcoholConsumption"
           options={habitOptions}
           value={updatedUser.alcoholConsumption}
-          onChange={(value) => handleOnChange("alcoholConsumption", value)}
+          onChange={(e) => handleOnChange("alcoholConsumption", e.target.value)}
         />
         <InputField
           label="Sleep Hours"
@@ -141,7 +141,7 @@ const Profile = (props: ProfileProps) => {
           name="stressLevel"
           options={stressLevelOptions}
           value={updatedUser.stressLevel}
-          onChange={(value) => handleOnChange("stressLevel", value)}
+          onChange={(e) => handleOnChange("stressLevel", e.target.value)}
         />
 
         {error && (
