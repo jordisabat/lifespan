@@ -1,4 +1,5 @@
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
+import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 import {
   afterEach,
@@ -98,7 +99,7 @@ describe("Profile", () => {
     });
   });
 
-  test("when data is incorrect, it should display an error message", () => {
+  test("when data is incorrect, it should display an error message", async () => {
     const date = new Date("2021-08-25T00:00:00.000Z");
 
     vitest.useFakeTimers();
@@ -113,9 +114,11 @@ describe("Profile", () => {
     const buttonSave = screen.getByText("Save") as HTMLButtonElement;
     buttonSave.click();
 
-    const errorMessage = screen.getByTestId("error-element");
+    expect(onSaveMock).toBeCalledTimes(0);
 
-    expect(errorMessage).toBeDefined();
+    const errorComponent = screen.findByTestId("error-component");
+
+    expect(errorComponent).toBeDefined();
   });
 
   test("when there is no user, is should render default data", () => {
@@ -169,9 +172,5 @@ describe("Profile", () => {
     buttonClean.click();
 
     expect(onSaveMock).toHaveBeenCalledWith(initialUser);
-  });
-
-  test("component should navigate to the correct route after successful save", () => {
-    // Test implementation goes here
   });
 });

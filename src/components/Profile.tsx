@@ -14,6 +14,7 @@ import Greatings from "../common/Greetings";
 import InputField from "./form/InputField";
 import SelectorField from "./form/SelectorField";
 import ActionButtons from "./form/ActionButtons";
+import ErrorComponent from "./form/ErrorComponent";
 
 type ProfileProps = {
   user: UserType;
@@ -23,7 +24,7 @@ type ProfileProps = {
 const Profile = (props: ProfileProps) => {
   const { user, onSave } = props;
   const [updatedUser, setUpdatedUser] = useState<UserType>(user);
-  const [error, setError] = useState("");
+  const [showError, setShowError] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,9 +47,7 @@ const Profile = (props: ProfileProps) => {
       onSave(updatedUser);
       navigate("/");
     } else {
-      setError(
-        "Please fill in all the fields before submitting the form. Email should be valid. Age should be between 18 and 100. Sleep hours should be between 0 and 24."
-      );
+      setShowError(true);
     }
   };
 
@@ -65,15 +64,6 @@ const Profile = (props: ProfileProps) => {
       ) : (
         <div className="flex flex-row  pb-[30px] text-[32px]">
           <Greatings user={user} />
-        </div>
-      )}
-
-      {error && (
-        <div data-testid="error-element" className="mb-6 md:flex md:w-[600px]">
-          <div className="md:w-1/3"></div>
-          <div className="md:w-2/3">
-            <div className="text-red-500">{error}</div>
-          </div>
         </div>
       )}
 
@@ -152,6 +142,8 @@ const Profile = (props: ProfileProps) => {
           value={updatedUser.stressLevel}
           onChange={(e) => handleOnChange("stressLevel", e.target.value)}
         />
+
+        {showError && <ErrorComponent data-testid="error-component" />}
 
         <ActionButtons cleanUser={cleanUser} />
       </form>
