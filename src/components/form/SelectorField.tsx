@@ -31,6 +31,7 @@ const SelectorField: React.FC<SelectorFieldProps> = ({
           id={name}
           name={name}
           value={value}
+          data-testid={`${name}-selector`}
           onChange={onChange}
         >
           {options.map((option) => (

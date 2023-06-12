@@ -68,6 +68,15 @@ const Profile = (props: ProfileProps) => {
         </div>
       )}
 
+      {error && (
+        <div data-testid="error-element" className="mb-6 md:flex md:w-[600px]">
+          <div className="md:w-1/3"></div>
+          <div className="md:w-2/3">
+            <div className="text-red-500">{error}</div>
+          </div>
+        </div>
+      )}
+
       <form onSubmit={onHandleSubmit}>
         <InputField
           label="Full Name"
@@ -78,20 +87,20 @@ const Profile = (props: ProfileProps) => {
           onChange={(e) => handleOnChange("name", e.target.value)}
         />
         <InputField
-          label="Age"
-          name="age"
-          type="number"
-          placeholder="age"
-          value={updatedUser.age}
-          onChange={(e) => handleOnChange("age", e.target.value)}
-        />
-        <InputField
           label="Email"
           name="email"
           type="email"
           placeholder="email"
           value={updatedUser.email}
           onChange={(e) => handleOnChange("email", e.target.value)}
+        />
+        <InputField
+          label="Age"
+          name="age"
+          type="number"
+          placeholder="Age"
+          value={updatedUser.age}
+          onChange={(e) => handleOnChange("age", e.target.value)}
         />
         <SelectorField
           label="Gender"
@@ -143,15 +152,6 @@ const Profile = (props: ProfileProps) => {
           value={updatedUser.stressLevel}
           onChange={(e) => handleOnChange("stressLevel", e.target.value)}
         />
-
-        {error && (
-          <div className="mb-6 md:flex md:w-[600px]">
-            <div className="md:w-1/3"></div>
-            <div className="md:w-2/3">
-              <div className="text-red-500">{error}</div>
-            </div>
-          </div>
-        )}
 
         <ActionButtons cleanUser={cleanUser} />
       </form>

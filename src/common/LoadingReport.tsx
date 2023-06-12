@@ -25,7 +25,10 @@ const LoadingReport: React.FC = () => {
   }, []);
 
   return (
-    <div className="m-auto flex w-[50%] flex-col items-center justify-center gap-6 p-16">
+    <div
+      data-testid="loading"
+      className="m-auto flex w-[50%] flex-col items-center justify-center gap-6 p-16"
+    >
       <div className="loading loading-ring loading-lg"></div>
       <div>{sentences[index]}</div>
     </div>

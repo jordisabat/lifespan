@@ -1,4 +1,4 @@
-import { describe, test, expect, beforeAll, afterAll, vitest } from "vitest";
+import { describe, test, expect, vitest } from "vitest";
 import { UserType } from "../../data/types";
 import { calculateUserReport, formatDateString } from "../../utils/helpers";
 
@@ -12,7 +12,6 @@ describe("formatDateString", () => {
   test("should handle invalid date strings", () => {
     const dateString = "invalid-date-string";
     const formattedString = formatDateString(dateString);
-    console.log(formattedString);
     expect(formattedString).toEqual("Invalid Date");
   });
 });
