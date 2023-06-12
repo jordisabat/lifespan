@@ -5,11 +5,9 @@ import Home from "./components/Home";
 
 const App = () => {
   return (
-    <StrictMode>
-      <BrowserRouter>
-        <Home />
-      </BrowserRouter>
-    </StrictMode>
+    <BrowserRouter>
+      <Home />
+    </BrowserRouter>
   );
 };
 

@@ -35,7 +35,7 @@ export const calculateUserReport = async (
     microbiomeAge: calculateScore(user),
     createdAt: new Date().toISOString(),
   };
-  await delay(6000);
+  await delay(500);
   return report;
 };
 

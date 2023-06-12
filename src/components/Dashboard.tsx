@@ -6,6 +6,7 @@ import Welcome from "./Welcome";
 import LoadingReport from "../common/LoadingReport";
 import HabitsWidget from "./widgets/HabitsWidget";
 import GraphsWidget from "./widgets/GraphsWidget";
+import OpenaiWidget from "./widgets/OpenaiWidget";
 
 const DashBoard = (props: { user: UserType; isLoading: boolean }) => {
   const { user, isLoading } = props;
@@ -23,6 +24,7 @@ const DashBoard = (props: { user: UserType; isLoading: boolean }) => {
           <ChronoWidget report={lastReport} />
           <HabitsWidget user={user} />
           <GraphsWidget />
+          <OpenaiWidget isLoading={isLoading} />
         </div>
       )}
     </div>
