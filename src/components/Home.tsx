@@ -7,6 +7,7 @@ import { calculateUserReport } from "../utils/helpers";
 import DashBoard from "./Dashboard";
 import Header from "../common/Header";
 import Profile from "./Profile";
+import { fetchAdvice } from "../api/openai";
 
 const Home = () => {
   const [user, setUser] = useState<UserType>(initialUser);
@@ -18,10 +19,13 @@ const Home = () => {
 
     if (user.id === 0) {
       localStorage.removeItem("user");
+      localStorage.removeItem("advices");
     } else {
       const report: ReportType = await calculateUserReport(user);
+      const advices = await fetchAdvice(user);
       user.reports.push(report);
       localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("advices", JSON.stringify(advices));
       setUser(user);
     }
 

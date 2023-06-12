@@ -5,6 +5,8 @@ const LoadingReport: React.FC = () => {
     "Loading...",
     "Retrieving your data...",
     "Formatting your report...",
+    "Almost there...",
+    "Just a few more seconds...",
   ];
   const [index, setIndex] = useState(0);
 
@@ -12,12 +14,9 @@ const LoadingReport: React.FC = () => {
     const interval = setInterval(() => {
       setIndex((prevIndex) => {
         const nextIndex = prevIndex + 1;
-        if (nextIndex >= sentences.length) {
-          clearInterval(interval); // Clear the interval after the first cycle
-        }
         return nextIndex % sentences.length;
       });
-    }, 2000);
+    }, 3000);
 
     return () => {
       clearInterval(interval);
