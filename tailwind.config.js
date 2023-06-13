@@ -4,6 +4,8 @@ module.exports = {
     extend: {
       fontFamily: {
         silka: ["silka", "sans-serif"],
+        silkabold: ["Silka Bold", "sans-serif"],
+        silkamedium: ["Silka Medium", "sans-serif"],
       },
     },
   },

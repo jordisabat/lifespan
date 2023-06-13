@@ -1,4 +1,6 @@
 @import url("https://fonts.cdnfonts.com/css/silka?styles=28236");
+@import url("http://db.onlinewebfonts.com/c/738c5bf4433c36f5e4c16d55194b7d07?family=Silka+Bold");
+@import url("http://db.onlinewebfonts.com/c/9197e1afc18fca2b492693b7b02199a4?family=Silka+Medium");
 
 @tailwind base;
 @tailwind components;

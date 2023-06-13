@@ -4,7 +4,7 @@ const Welcome = () => {
   return (
     <div className="pt-16">
       <div className="">
-        <div className="pb-16 text-[48px] font-bold md:text-[64px] lg:text-[72px]">
+        <div className="pb-16 font-silkabold text-[48px] font-bold md:text-[64px] lg:text-[86px]">
           Optimise your healthspan
         </div>
         <Link
