@@ -113,7 +113,10 @@ The values user.age, user.gender, etc. are the actual user's data. The max_token
 A good practice when interacting with GPT-3 is to be explicit with your instructions and provide a clear context. 
 
 ``` 
-content: `I am acting as a patient and I am giving you my health data for your analysis. Based on this data, please provide me with concise advice on how to improve my health and prolong my lifespan. Here is my data: 
+content: 
+I am acting as a patient and I am giving you my health data for your analysis. 
+Based on this data, please provide me with concise advice on how to improve my health and prolong my lifespan. 
+Here is my data: 
 
 - Age: ${user.age}
 - Gender: ${user.gender}
@@ -124,7 +127,7 @@ content: `I am acting as a patient and I am giving you my health data for your a
 - Average Sleep Hours per day: ${user.sleepHours}
 - Current Stress Level: ${user.stressLevel}
 
-Based on this information, could you provide some health advice?`,
+Based on this information, could you provide some health advice?,
 ```
 
 ## UI/UX
