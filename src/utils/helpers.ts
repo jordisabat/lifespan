@@ -1,4 +1,5 @@
 import { ReportType, UserType } from "../data/types";
+import { initialUser } from "./data";
 
 export const formatDateString = (dateString: string): string => {
   const date = new Date(dateString);
@@ -112,4 +113,17 @@ export const getExerciseFrequencyValue = (frequency: string): number => {
     default:
       return 0;
   }
+};
+
+export const getUserDataFromLocalStorage = () => {
+  const data = localStorage.getItem("user");
+  return data ? (JSON.parse(data) as UserType) : initialUser;
+};
+
+export const clearLocalStorage = () => {
+  localStorage.removeItem("user");
+  localStorage.removeItem("advices");
+};
+export const saveLocalStorage = (name: string, value: string) => {
+  localStorage.setItem(name, value);
 };

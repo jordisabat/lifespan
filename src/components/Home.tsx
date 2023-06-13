@@ -3,7 +3,12 @@ import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ReportType, UserType } from "../data/types";
 import { initialUser } from "../utils/data";
-import { calculateUserReport } from "../utils/helpers";
+import {
+  calculateUserReport,
+  clearLocalStorage,
+  getUserDataFromLocalStorage,
+  saveLocalStorage,
+} from "../utils/helpers";
 import DashBoard from "./Dashboard";
 import Header from "../common/Header";
 import Profile from "./Profile";
@@ -15,39 +20,42 @@ const Home = () => {
   const [isLoadingOpenAI, setIsLoadingOpenAI] = useState(false);
 
   useEffect(() => {
-    const data = localStorage.getItem("user");
-    if (data) {
-      setUser(JSON.parse(data) as UserType);
-    } else {
-      setUser(initialUser);
-    }
+    const data = getUserDataFromLocalStorage();
+    setUser(data);
   }, []);
+
+  const handleOnSave = async (updatedUser: UserType) => {
+    setUser(updatedUser);
+
+    if (updatedUser.id === 0) {
+      clearLocalStorage();
+    } else {
+      setIsLoading(true);
+
+      const report: ReportType = await calculateUserReport(updatedUser);
+      updatedUser.reports?.push(report);
+
+      saveUser(updatedUser);
+      setIsLoading(false);
+
+      await callOPenAI(updatedUser);
+    }
+  };
+
+  const saveUser = (updatedUser: UserType) => {
+    saveLocalStorage("user", JSON.stringify(updatedUser));
+    setUser(updatedUser);
+  };
 
   const callOPenAI = async (user: UserType) => {
     setIsLoadingOpenAI(true);
     try {
       const advices = await fetchAdvice(user);
-      localStorage.setItem("advices", JSON.stringify(advices));
+      saveLocalStorage("advices", JSON.stringify(advices));
       setIsLoadingOpenAI(false);
     } catch (e) {
       console.log(e);
       setIsLoadingOpenAI(false);
-    }
-  };
-
-  const handleOnSave = async (updatedUser: UserType) => {
-    setUser(updatedUser);
-    if (updatedUser.id === 0) {
-      localStorage.removeItem("user");
-      localStorage.removeItem("advices");
-    } else {
-      setIsLoading(true);
-      const report: ReportType = await calculateUserReport(updatedUser);
-      updatedUser.reports.push(report);
-      localStorage.setItem("user", JSON.stringify(updatedUser));
-      setUser(updatedUser);
-      setIsLoading(false);
-      await callOPenAI(updatedUser);
     }
   };
 

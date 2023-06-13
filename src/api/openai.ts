@@ -6,7 +6,7 @@ export const fetchAdvice = async (user: UserType): Promise<string> => {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
+        Authorization: `Bearer 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`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -14,7 +14,7 @@ export const fetchAdvice = async (user: UserType): Promise<string> => {
         messages: [
           {
             role: "user",
-            content: `Act like a doctor. I will write down some of my health data and I would like that you give to me in a short way some advices how I can be more healthy and span my health time life.\n I have ${user.age} and I am a ${user.gender}. I exercise ${user.exerciseFrequency} and my diet mostly is ${user.diet}. I smoke ${user.smokingHabits}, I drink alcohol ${user.alcoholConsumption} and I use to sleep ${user.sleepHours} hours a day. I feel that my stress level right now is ${user.stressLevel}.\n. Can you provide me some advices?`,
+            content: `I am acting as a patient and I am giving you my health data for your analysis. Based on this data, please provide me with concise advice on how to improve my health and prolong my lifespan. Here is my data: \\n - Age: ${user.age} \\n - Gender: ${user.gender} \\n - Exercise Frequency: ${user.exerciseFrequency} \\n - Diet: ${user.diet} \\n - Smoking Habits: ${user.smokingHabits} \\n - Alcohol Consumption: ${user.alcoholConsumption} \\n - Average Sleep Hours per day: ${user.sleepHours} \\n - Current Stress Level: ${user.stressLevel} \\nBased on this information, could you provide some health advice?`,
           },
         ],
         max_tokens: 512,
