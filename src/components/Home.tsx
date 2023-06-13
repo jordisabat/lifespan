@@ -12,33 +12,44 @@ import { fetchAdvice } from "../api/openai";
 const Home = () => {
   const [user, setUser] = useState<UserType>(initialUser);
   const [isLoading, setIsLoading] = useState(false);
-
-  const handleOnSave = async (user: UserType) => {
-    setIsLoading(true);
-    setUser(user);
-
-    if (user.id === 0) {
-      localStorage.removeItem("user");
-      localStorage.removeItem("advices");
-    } else {
-      const report: ReportType = await calculateUserReport(user);
-      const advices = await fetchAdvice(user);
-      user.reports.push(report);
-      localStorage.setItem("user", JSON.stringify(user));
-      localStorage.setItem("advices", JSON.stringify(advices));
-      setUser(user);
-    }
-
-    setIsLoading(false);
-  };
+  const [isLoadingOpenAI, setIsLoadingOpenAI] = useState(false);
 
   useEffect(() => {
-    // store user on cache
     const data = localStorage.getItem("user");
     if (data) {
       setUser(JSON.parse(data) as UserType);
+    } else {
+      setUser(initialUser);
     }
   }, []);
+
+  const callOPenAI = async (user: UserType) => {
+    setIsLoadingOpenAI(true);
+    try {
+      const advices = await fetchAdvice(user);
+      localStorage.setItem("advices", JSON.stringify(advices));
+      setIsLoadingOpenAI(false);
+    } catch (e) {
+      console.log(e);
+      setIsLoadingOpenAI(false);
+    }
+  };
+
+  const handleOnSave = async (updatedUser: UserType) => {
+    setUser(updatedUser);
+    if (updatedUser.id === 0) {
+      localStorage.removeItem("user");
+      localStorage.removeItem("advices");
+    } else {
+      setIsLoading(true);
+      const report: ReportType = await calculateUserReport(updatedUser);
+      updatedUser.reports.push(report);
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+      setUser(updatedUser);
+      setIsLoading(false);
+      await callOPenAI(updatedUser);
+    }
+  };
 
   return (
     <div className="p-[24px] font-silka text-[18px]">
@@ -47,7 +58,13 @@ const Home = () => {
         <Routes>
           <Route
             path="/"
-            element={<DashBoard user={user} isLoading={isLoading} />}
+            element={
+              <DashBoard
+                user={user}
+                isLoading={isLoading}
+                isLoadingOpenAI={isLoadingOpenAI}
+              />
+            }
           />
           <Route
             path="/profile"
